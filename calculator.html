@@ -7,6 +7,10 @@
 
 <div style="background:white; padding:20px; border-radius:12px; margin-top:20px;">
 
+  <p><b>Процент кешбэка вашего банка:</b></p>
+  <input type="number" id="cashbackPct" placeholder="Например: 5" 
+  style="font-size:18px; padding:10px; width:100%; border-radius:8px; border:1px solid #ccc;">
+
   <p><b>Расходы по карте в месяц:</b></p>
   <input type="number" id="spending" placeholder="Например: 40000" 
   style="font-size:18px; padding:10px; width:100%; border-radius:8px; border:1px solid #ccc;">
@@ -32,9 +36,10 @@
 
 <script>
 function calculate() {
+  let pct = document.getElementById("cashbackPct").value / 100;
   let spending = document.getElementById("spending").value;
   let savings = document.getElementById("savings").value;
-  let cashback = Math.round(spending * 0.02 * 12);
+  let cashback = Math.round(spending * pct * 12);
   let savingsIncome = Math.round(savings * 12 * 0.16 * 0.5);
   let total = cashback + savingsIncome;
   document.getElementById("r1").textContent = cashback + " ₽";
